@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Полина (RIN) — AI-креатор, графический дизайнер, иллюстратор</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Unbounded:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===== NAV (плавающая, всегда сверху) ===== -->
+<nav class="site-nav">
+  <div class="nav-left">
+    <div class="nav-pill nav-lang" id="desktopLangBtn">ENG</div>
+    <div class="nav-pill nav-links">
+      <a href="#skills" data-en="Specializations">Специализации</a>
+      <a href="#experience" data-en="Experience & Skills">Опыт & Софт</a>
+      <a href="#portfolio" data-en="Portfolio">Портфолио</a>
+    </div>
+  </div>
+  <div class="nav-pill nav-contacts">
+    <a href="https://t.me/rinmblw" target="_blank" rel="noopener" aria-label="Telegram" class="icon-scale-up">
+      <svg viewBox="0 0 48 48" fill="currentColor"><path d="M41.4193 7.30899C41.4193 7.30899 45.3046 5.79399 44.9808 9.47328C44.8729 10.9883 43.9016 16.2908 43.1461 22.0262L40.5559 39.0159C40.5559 39.0159 40.3401 41.5048 38.3974 41.9377C36.4547 42.3705 33.5408 40.4227 33.0011 39.9898C32.5694 39.6652 24.9068 34.7955 22.2086 32.4148C21.4531 31.7655 20.5897 30.4669 22.3165 28.9519L33.6487 18.1305C34.9438 16.8319 36.2389 13.8019 30.8426 17.4812L15.7331 27.7616C15.7331 27.7616 14.0063 28.8437 10.7686 27.8698L3.75342 25.7055C3.75342 25.7055 1.16321 24.0823 5.58815 22.459C16.3807 17.3729 29.6555 12.1786 41.4193 7.30899Z"/></svg>
+    </a>
+    <a href="https://max.ru/u/f9LHodD0cOKYWw6nqZ7QCCbTB6oWilsXYKdx-WZf43SFGwpbgeRtLe6-epM" target="_blank" rel="noopener" aria-label="Max">
+      <svg viewBox="0 0 720 720" fill="currentColor"><path d="M350.4,9.6C141.8,20.5,4.1,184.1,12.8,390.4c3.8,90.3,40.1,168,48.7,253.7,2.2,22.2-4.2,49.6,21.4,59.3,31.5,11.9,79.8-8.1,106.2-26.4,9-6.1,17.6-13.2,24.2-22,27.3,18.1,53.2,35.6,85.7,43.4,143.1,34.3,299.9-44.2,369.6-170.3C799.6,291.2,622.5-4.6,350.4,9.6h0ZM269.4,504c-11.3,8.8-22.2,20.8-34.7,27.7-18.1,9.7-23.7-.4-30.5-16.4-21.4-50.9-24-137.6-11.5-190.9,16.8-72.5,72.9-136.3,150-143.1,78-6.9,150.4,32.7,183.1,104.2,72.4,159.1-112.9,316.2-256.4,218.6h0Z"/></svg>
+    </a>
+    <a href="mailto:pollylightt@gmail.com" aria-label="Email" class="icon-scale-up">
+      <svg viewBox="0 0 512 512" fill="currentColor"><path d="M508.65,115.988L363.186,261.451l141.875,141.979c4.295-7.385,6.939-15.85,6.939-24.992V133.563 C512,127.357,510.722,121.476,508.65,115.988z"/><path d="M461.913,83.476H50.087c-8.327,0-16.066,2.236-22.982,5.847L245.76,307.976c6.344,6.344,17.363,6.344,23.596,0 l217.626-217.52C479.58,86.133,471.088,83.476,461.913,83.476z"/><path d="M4.201,113.611C1.527,119.733,0,126.465,0,133.563v244.875c0,8.997,2.573,17.327,6.743,24.632l143.407-143.51 L4.201,113.611z"/><path d="M339.478,285.159l-46.414,46.525c-19.496,19.275-51.084,19.591-70.901,0l-48.306-48.417L32.006,425.017 c5.625,2.192,11.69,3.507,18.081,3.507h411.826c6.235,0,12.146-1.284,17.657-3.376L339.478,285.159z"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- ===== МОБИЛЬНОЕ МЕНЮ (ENG слева + гамбургер справа + выпадающая панель) ===== -->
+<div class="mobile-lang-btn" id="mobileLangBtn">ENG</div>
+<button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Открыть меню">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+</button>
+<div class="mobile-menu-overlay" id="mobileMenuOverlay">
+  <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Закрыть меню">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+  </button>
+  <div class="mobile-menu-links">
+    <a href="#skills" data-en="Specializations">Специализации</a>
+    <a href="#experience" data-en="Experience & Skills">Опыт & Софт</a>
+    <a href="#portfolio" data-en="Portfolio">Портфолио</a>
+  </div>
+  <div class="mobile-menu-contacts">
+    <a href="https://t.me/rinmblw" target="_blank" rel="noopener" aria-label="Telegram">
+      <svg viewBox="0 0 48 48" fill="currentColor"><path d="M41.4193 7.30899C41.4193 7.30899 45.3046 5.79399 44.9808 9.47328C44.8729 10.9883 43.9016 16.2908 43.1461 22.0262L40.5559 39.0159C40.5559 39.0159 40.3401 41.5048 38.3974 41.9377C36.4547 42.3705 33.5408 40.4227 33.0011 39.9898C32.5694 39.6652 24.9068 34.7955 22.2086 32.4148C21.4531 31.7655 20.5897 30.4669 22.3165 28.9519L33.6487 18.1305C34.9438 16.8319 36.2389 13.8019 30.8426 17.4812L15.7331 27.7616C15.7331 27.7616 14.0063 28.8437 10.7686 27.8698L3.75342 25.7055C3.75342 25.7055 1.16321 24.0823 5.58815 22.459C16.3807 17.3729 29.6555 12.1786 41.4193 7.30899Z"/></svg>
+    </a>
+    <a href="https://max.ru/u/f9LHodD0cOKYWw6nqZ7QCCbTB6oWilsXYKdx-WZf43SFGwpbgeRtLe6-epM" target="_blank" rel="noopener" aria-label="Max">
+      <svg viewBox="0 0 720 720" fill="currentColor"><path d="M350.4,9.6C141.8,20.5,4.1,184.1,12.8,390.4c3.8,90.3,40.1,168,48.7,253.7,2.2,22.2-4.2,49.6,21.4,59.3,31.5,11.9,79.8-8.1,106.2-26.4,9-6.1,17.6-13.2,24.2-22,27.3,18.1,53.2,35.6,85.7,43.4,143.1,34.3,299.9-44.2,369.6-170.3C799.6,291.2,622.5-4.6,350.4,9.6h0ZM269.4,504c-11.3,8.8-22.2,20.8-34.7,27.7-18.1,9.7-23.7-.4-30.5-16.4-21.4-50.9-24-137.6-11.5-190.9,16.8-72.5,72.9-136.3,150-143.1,78-6.9,150.4,32.7,183.1,104.2,72.4,159.1-112.9,316.2-256.4,218.6h0Z"/></svg>
+    </a>
+    <a href="mailto:pollylightt@gmail.com" aria-label="Email">
+      <svg viewBox="0 0 512 512" fill="currentColor"><path d="M508.65,115.988L363.186,261.451l141.875,141.979c4.295-7.385,6.939-15.85,6.939-24.992V133.563 C512,127.357,510.722,121.476,508.65,115.988z"/><path d="M461.913,83.476H50.087c-8.327,0-16.066,2.236-22.982,5.847L245.76,307.976c6.344,6.344,17.363,6.344,23.596,0 l217.626-217.52C479.58,86.133,471.088,83.476,461.913,83.476z"/><path d="M4.201,113.611C1.527,119.733,0,126.465,0,133.563v244.875c0,8.997,2.573,17.327,6.743,24.632l143.407-143.51 L4.201,113.611z"/><path d="M339.478,285.159l-46.414,46.525c-19.496,19.275-51.084,19.591-70.901,0l-48.306-48.417L32.006,425.017 c5.625,2.192,11.69,3.507,18.081,3.507h411.826c6.235,0,12.146-1.284,17.657-3.376L339.478,285.159z"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="hero-bg">
+    <img src="images/hero-bg.webp" alt="">
+  </div>
+  <div class="hero-overlay"></div>
+
+  <div class="container">
+    <div class="hero-inner">
+      <span class="alias-tag">@rinmblw / RIN</span>
+      <h1 data-en="Hi!<br>I&#39;m <span>Polina</span>.">Привет!<br>Я <span>Полина</span>.</h1>
+      <p class="subtitle" data-en="AI creator, graphic designer, and illustrator with 8+ years of commercial experience. I combine a strong academic foundation with AI-driven pipelines.">AI-креатор, графический дизайнер и иллюстратор с 8+ годами коммерческого опыта. Совмещаю сильную академическую базу с нейросетевыми пайплайнами.</p>
+    </div>
+  </div>
+</header>
+
+<!-- ===== SKILLS BANNER ===== -->
+<section class="skills-banner" id="skills">
+  <div class="container">
+    <h2 data-en="What I Do">Что я делаю</h2>
+    <div class="skill-cards">
+      <div class="skill-card">
+        <svg class="icon" viewBox="0 0 122.88 105.21" aria-label="AI Generation"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M63.91,18.75v12.16h33.51c5.43,0,9.87,4.44,9.87,9.87v12.47h13.42c1.19,0,2.17,0.97,2.17,2.17v25.28 c0,1.19-0.97,2.17-2.17,2.17h-13.42v12.47c0,5.43-4.44,9.87-9.87,9.87h-73c-5.43,0-9.87-4.44-9.87-9.87V82.87H2.17 C0.97,82.87,0,81.9,0,80.71V55.42c0-1.19,0.97-2.17,2.17-2.17h12.38V40.79c0-5.43,4.44-9.87,9.87-9.87h33.51V18.75 c-3.85-1.26-6.62-4.87-6.62-9.14c0-5.31,4.3-9.61,9.61-9.61c5.31,0,9.61,4.3,9.61,9.61C70.53,13.88,67.75,17.49,63.91,18.75 L63.91,18.75z M41.03,79.74h40.81c1.99,0,3.62,1.63,3.62,3.62v1.7c0,1.99-1.63,3.62-3.62,3.62H41.03c-1.99,0-3.62-1.63-3.62-3.62 v-1.7C37.41,81.36,39.04,79.74,41.03,79.74L41.03,79.74z M78.7,47.59c5.37,0,9.73,4.35,9.73,9.73c0,5.37-4.35,9.72-9.73,9.72 s-9.72-4.35-9.72-9.72C68.97,51.94,73.33,47.59,78.7,47.59L78.7,47.59z M44.18,47.59c5.37,0,9.72,4.35,9.72,9.73 c0,5.37-4.35,9.72-9.72,9.72c-5.37,0-9.72-4.35-9.72-9.72C34.46,51.94,38.81,47.59,44.18,47.59L44.18,47.59z"/></svg>
+        <h3>AI Generation & Pipelines</h3>
+        <p data-en="Graphics generation, refinement, and scene/asset assembly. Quality control from prompt to final render.">Генерация графики, доработка и сборка сцен/ассетов. Контроль качества от промпта до финального рендера.</p>
+        <div class="tags">
+          <span>Midjourney</span><span>NanaBanana</span><span>ComfyUI / SD</span>
+          <span>Claude</span><span>ChatGPT</span><span>Krea</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <svg class="icon" viewBox="0 0 325.04 325.04" aria-label="Illustration & Concept"><g fill="currentColor"><path d="M117.866,234.088c-2.956,14.532-4.875,21.558-16.092,22.458c-2.764,0.222-5.015,2.308-5.446,5.047 c-0.432,2.738,1.069,5.416,3.631,6.477c0.721,0.298,17.877,7.308,37.921,7.309c0.003,0,0.005,0,0.007,0 c13.968,0,25.95-3.386,35.612-10.063c11.45-7.912,19.344-20.294,23.541-36.788l-38.572-38.88 C125.871,194.924,121.253,217.436,117.866,234.088z"/><path d="M322.745,63.336c-1.037-1.046-2.887-2.293-5.806-2.293c-3.423,0-12.516,0-67.74,46.992 c-25.509,21.706-54.92,48.559-78.314,71.41l36.603,36.894c24.061-25.009,52.129-56.355,74.451-83.258 c14.096-16.986,24.935-31.002,32.216-41.657C323.799,77.311,328.023,68.655,322.745,63.336z"/><path d="M182.595,278.479c-12.387,8.56-27.429,12.899-44.716,12.899c-22.753-0.001-41.919-7.649-44.046-8.527 c-9.425-3.906-14.898-13.673-13.31-23.749c1.555-9.871,9.463-17.373,19.341-18.446c0.861-2.571,1.813-7.254,2.323-9.758 c1.878-9.23,4.449-21.873,12.358-33.126c8.637-12.287,21.656-20.165,38.751-23.466c9.811-9.737,21.005-20.443,32.686-31.308 c-5.905-1.281-11.185-5.127-14.017-10.944c-4.875-10.02-0.623-22.073,9.484-26.895c10.133-4.834,22.287-0.612,27.155,9.423 c0.961,1.978,1.555,4.033,1.832,6.096c9.688-8.677,19.309-17.099,28.392-24.828c0.054-0.046,0.105-0.09,0.16-0.136 c-10.209-19.536-24.849-36.845-42.687-50.098c-25.614-19.031-56.114-29.096-88.2-29.104c-0.01,0-0.017,0-0.025,0 c-21.654,0-47.976,7.566-68.697,19.749C13.981,51.193-0.005,71.163,0,92.49c0.008,25.748,14.53,36.518,26.199,45.171 c9.515,7.057,17.03,12.63,17.034,24.844c0.003,12.213-7.508,17.781-17.018,24.831c-11.665,8.648-26.184,19.412-26.176,45.163 c0.006,21.324,14.001,41.299,39.406,56.244c20.736,12.198,47.072,19.78,68.73,19.786c0.015,0,0.028,0,0.042,0 c39.305,0,76.254-15.171,104.044-42.72c20.837-20.655,34.656-46.416,40.273-74.442c-13.952,15.471-27.997,30.493-40.563,43.322 C206.641,253.965,196.773,268.682,182.595,278.479z M111.054,77.103c2.498-10.871,13.4-17.657,24.354-15.167 c10.939,2.478,17.793,13.282,15.313,24.138c-2.499,10.844-13.407,17.631-24.362,15.154 C115.411,98.764,108.554,87.947,111.054,77.103z M45.054,114.152c-7.005-8.716-5.565-21.401,3.216-28.339 c8.78-6.925,21.571-5.505,28.589,3.195c6.99,8.703,5.545,21.388-3.229,28.34C64.869,124.288,52.058,122.853,45.054,114.152z M55.746,247.168c-8.786-6.944-10.231-19.629-3.226-28.342c7-8.696,19.796-10.122,28.581-3.18 c8.778,6.943,10.224,19.629,3.225,28.327C77.327,252.686,64.53,254.111,55.746,247.168z"/></g></svg>
+        <h3>Illustration & Concept</h3>
+        <p data-en="Character design, promo art, sticker packs, animation-ready assets, vector and raster graphics.">Дизайн персонажей, промо-арты, стикерпаки, ассеты под анимацию, векторная и растровая графика.</p>
+        <div class="tags">
+          <span>Photoshop</span><span>Procreate</span><span>Illustrator</span><span>SAI</span><span>Aseprite</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" aria-label="Graphic Design & Brand"><path fill="currentColor" d="M5.57489 2.07403C5.83474 2.19892 6 2.4617 6 2.75001C6 3.57985 6.31211 4.05763 6.70313 4.63948L6.73156 4.68175C7.0641 5.17579 7.5 5.8234 7.5 6.75001C7.5 7.69552 7.02282 8.52959 6.29615 9.02452C6.48733 9.1848 6.65672 9.38248 6.80225 9.61803C7.27801 10.388 7.5 11.5645 7.5 13.2549C7.5 14.967 7.27003 17.023 6.89541 18.6644C6.70914 19.4806 6.47843 20.2335 6.20272 20.7994C6.06598 21.08 5.89948 21.3541 5.69217 21.5685C5.48714 21.7804 5.17035 22.0049 4.75 22.0049C4.32965 22.0049 4.01286 21.7804 3.80783 21.5685C3.60052 21.3541 3.43402 21.08 3.29728 20.7994C3.02157 20.2335 2.79086 19.4806 2.60459 18.6644C2.22997 17.023 2 14.967 2 13.2549C2 11.5645 2.22199 10.388 2.69775 9.61803C2.84328 9.38248 3.01267 9.1848 3.20385 9.02452C2.47718 8.52959 2 7.69552 2 6.75001C2 6.38181 2.00034 5.74889 2.38341 4.93168C2.75829 4.13192 3.47066 3.21301 4.78148 2.16436C5.00661 1.98425 5.31504 1.94914 5.57489 2.07403Z"/><path fill="currentColor" d="M9.99994 14.917C9.46162 14.8267 8.94761 14.6647 8.46806 14.4412C8.48904 14.0349 8.49994 13.637 8.49994 13.2549C8.49994 12.8491 8.48793 12.461 8.46151 12.0915C8.90465 12.4558 9.4275 12.7266 9.99994 12.874V10.5C9.99994 9.67157 10.6715 9 11.4999 9H14.9999C14.9999 6.79086 13.2091 5 10.9999 5C10.0146 5 9.11251 5.35626 8.4154 5.94699C8.24173 5.13337 7.83957 4.53662 7.58275 4.15554L7.54248 4.09572C8.51976 3.40549 9.7125 3 10.9999 3C14.3136 3 16.9999 5.68629 16.9999 9H20.4999C21.3284 9 21.9999 9.67157 21.9999 10.5V19.5C21.9999 20.3284 21.3284 21 20.4999 21H11.4999C10.6715 21 9.99994 20.3284 9.99994 19.5V14.917ZM11.9999 14.917V19H19.9999V11H16.6585C15.9423 13.0265 14.1683 14.5533 11.9999 14.917ZM14.4648 11H11.9999V12.874C13.0508 12.6035 13.9345 11.9168 14.4648 11Z"/></svg>
+        <h3>Graphic Design & Brand</h3>
+        <p data-en="Social media design, print, cards/infographics, presentations, and ad campaigns.">Оформление соц. сетей, полиграфия, карточки/инфографика, презентации и рекламные кампании.</p>
+        <div class="tags">
+          <span>Figma</span><span>InDesign</span><span>CorelDRAW</span><span>Tilda</span><span>Power Point</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPERIENCE, SOFTWARE & EDUCATION ===== -->
+<section class="section" id="experience">
+  <div class="container">
+    <h2 class="section-title" data-en="<span class=&quot;accent&quot;>Experience</span> &amp; Skills"><span class="accent">Опыт</span> & Навыки</h2>
+    <div class="info-grid">
+
+      <!-- Опыт & Отзывы -->
+      <div class="info-card">
+        <h3 data-en="Experience & Reviews">Опыт & Отзывы</h3>
+        <p class="label" data-en="Employment Experience:">Опыт в найме:</p>
+        <p data-en="• <span class=&quot;highlight&quot;>DreamSim (Mobile GameDev)</span> — generating, refining, and assembling graphics for mobile ads.<br>• <span class=&quot;highlight&quot;>IMBA Energy (E-sports Drinks &amp; Gaming)</span> — generating SMM concepts, promo graphics, infographics, and social visuals.">• <span class="highlight">DreamSim (Mobile GameDev)</span> — генерация, доработка и сборка графики для мобильной рекламы.<br>
+           • <span class="highlight">IMBA Energy (E-sports Drinks & Gaming)</span> — генерация концептов для SMM, создание промо-графики, дизайн инфографики и визуала для соцсетей.</p>
+        <p class="label" data-en="Freelance (Private Clients & Kwork):">Фриланс (Частные заказы & Kwork):</p>
+        <p data-en="• Full-cycle banners, icons, website and social media design, infographics, and SMM materials.<br>• Creating 2D illustrations, characters, vector assets, and promo art.<br>• Generation, AI upscaling, retouching, and graphics assembly per client briefs.">• Разработка баннеров, иконок, оформления сайтов, соц. сетей, инфографики и SMM-материалов под ключ.<br>
+           • Создание 2D-иллюстраций, персонажей, векторных ассетов и промо-артов.<br>
+           • Генерация, нейросетевой апскейл, ретушь и сборка графики по ТЗ заказчиков.</p>
+        <p class="rating" data-en="★ 4.9 on Kwork · 35+ projects">★ 4.9 на Kwork · 35+ проектов</p>
+
+        <div class="reviews-carousel">
+          <div class="reviews-track" id="reviewsTrack">
+            <div class="review-card active">
+              <div class="who"><img class="avatar" src="images/avatar-paradox-code.webp" alt="Paradox_Code"><span class="name">Paradox_Code</span><span class="who-line"></span><svg class="smiley" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5" fill="currentColor"/><circle cx="8.7" cy="10" r="1.3" fill="#1e1414"/><circle cx="15.3" cy="10" r="1.3" fill="#1e1414"/><path d="M7.5 14c1.2 1.6 2.8 2.4 4.5 2.4s3.3-.8 4.5-2.4" stroke="#1e1414" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></div>
+              <p class="quote" data-en="&laquo;Wonderful work! Very grateful for the attentive approach and creative touch. Everything was done precisely, at a high level of quality, and on time....&raquo;">«Прекрасно выполненная работа! Очень благодарен за внимательное отношение к задаче и творческий подход. Всё было сделано чётко, с высоким качеством и в срок....»</p>
+              <div class="review-nav">
+                <button data-dir="-1" aria-label="Предыдущий отзыв"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <a href="https://kwork.ru/user/rin_k" target="_blank" data-en="Read all reviews on Kwork">Читать все отзывы на Kwork</a>
+                <button data-dir="1" aria-label="Следующий отзыв"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              </div>
+            </div>
+            <div class="review-card">
+              <div class="who"><img class="avatar" src="images/avatar-komarovskij.webp" alt="Komarovskij"><span class="name">Komarovskij</span><span class="who-line"></span><svg class="smiley" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5" fill="currentColor"/><circle cx="8.7" cy="10" r="1.3" fill="#1e1414"/><circle cx="15.3" cy="10" r="1.3" fill="#1e1414"/><path d="M7.5 14c1.2 1.6 2.8 2.4 4.5 2.4s3.3-.8 4.5-2.4" stroke="#1e1414" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></div>
+              <p class="quote" data-en="&laquo;Second order, everything spot on. Work delivered on time, all revisions handled without any fuss — this kind of professional is genuinely valuable. Thank you so much!&raquo;">«Второй заказ, все четко. Работа выполнена в срок, все правки были принято без споров и всего такого, считаю такие работники очень важны, и ценны. Спасибо огромное!»</p>
+              <div class="review-nav">
+                <button data-dir="-1" aria-label="Предыдущий отзыв"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <a href="https://kwork.ru/user/rin_k" target="_blank" data-en="Read all reviews on Kwork">Читать все отзывы на Kwork</a>
+                <button data-dir="1" aria-label="Следующий отзыв"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              </div>
+            </div>
+            <div class="review-card">
+              <div class="who"><img class="avatar" src="images/avatar-strutsenko-art.webp" alt="Strutsenko_ART"><span class="name">Strutsenko_ART</span><span class="who-line"></span><svg class="smiley" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5" fill="currentColor"/><circle cx="8.7" cy="10" r="1.3" fill="#1e1414"/><circle cx="15.3" cy="10" r="1.3" fill="#1e1414"/><path d="M7.5 14c1.2 1.6 2.8 2.4 4.5 2.4s3.3-.8 4.5-2.4" stroke="#1e1414" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></div>
+              <p class="quote" data-en="&laquo;Wonderful result! Very attentive to the work, it turned out even better than I hoped for. Highly recommend!)&raquo;">«Замечательный результат! Исполнитель очень внимательно относится к своей работе, получилось даже лучше, чем я хотел. Однозначно рекомендую!)»</p>
+              <div class="review-nav">
+                <button data-dir="-1" aria-label="Предыдущий отзыв"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <a href="https://kwork.ru/user/rin_k" target="_blank" data-en="Read all reviews on Kwork">Читать все отзывы на Kwork</a>
+                <button data-dir="1" aria-label="Следующий отзыв"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              </div>
+            </div>
+            <div class="review-card">
+              <div class="who"><img class="avatar" src="images/avatar-mimills.webp" alt="MiMills"><span class="name">MiMills</span><span class="who-line"></span><svg class="smiley" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5" fill="currentColor"/><circle cx="8.7" cy="10" r="1.3" fill="#1e1414"/><circle cx="15.3" cy="10" r="1.3" fill="#1e1414"/><path d="M7.5 14c1.2 1.6 2.8 2.4 4.5 2.4s3.3-.8 4.5-2.4" stroke="#1e1414" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></div>
+              <p class="quote" data-en="&laquo;Thanks to Polina for a pleasant, high-quality collaboration! The result turned out great and I was very happy with it. Polina gave excellent guidance throughout...&raquo;">«Спасибо Полине за приятное и качественное сотрудничество! Результат получился отличным и очень порадовал. Полина отлично консультировала...»</p>
+              <div class="review-nav">
+                <button data-dir="-1" aria-label="Предыдущий отзыв"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <a href="https://kwork.ru/user/rin_k" target="_blank" data-en="Read all reviews on Kwork">Читать все отзывы на Kwork</a>
+                <button data-dir="1" aria-label="Следующий отзыв"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Программы -->
+      <div class="info-card">
+        <h3 data-en="Software">Программы</h3>
+        <div class="levels">
+          <div class="level-badge pro">PRO</div>
+          <div class="level-badge high">HIGH</div>
+          <div class="level-badge mid">MID</div>
+        </div>
+        <div class="skill-item">
+          <p class="label">AI & GenTools:</p>
+          <p class="list">
+            <span class="skill-pair"><span class="dot dot-grey"></span> ComfyUI / Stable Diffusion</span>
+            <span class="skill-pair"><span class="dot dot-red"></span> Midjourney</span>
+            <span class="skill-pair"><span class="dot dot-red"></span> Krea</span>
+            <span class="skill-pair"><span class="dot dot-red"></span> ChatGPT</span>
+            <span class="skill-pair"><span class="dot dot-red"></span> NanaBanana</span>
+            <span class="skill-pair"><span class="dot dot-peach"></span> Omni Flash</span>
+            <span class="skill-pair"><span class="dot dot-peach"></span> Higgsfield</span>
+            <span class="skill-pair"><span class="dot dot-peach"></span> Claude</span>
+          </p>
+        </div>
+        <div class="skill-item">
+          <p class="label">2D Art & Illustration:</p>
+          <p class="list">
+            <span class="skill-pair"><span class="dot dot-red"></span> Adobe Photoshop</span>
+            <span class="skill-pair"><span class="dot dot-red"></span> Procreate</span>
+            <span class="skill-pair"><span class="dot dot-red"></span> Paint Tool SAI</span>
+            <span class="skill-pair"><span class="dot dot-grey"></span> Clip Studio</span>
+            <span class="skill-pair"><span class="dot dot-peach"></span> Aseprite</span>
+          </p>
+        </div>
+        <div class="skill-item">
+          <p class="label">Design & Branding:</p>
+          <p class="list">
+            <span class="skill-pair"><span class="dot dot-peach"></span> Figma</span>
+            <span class="skill-pair"><span class="dot dot-red"></span> Adobe Illustrator</span>
+            <span class="skill-pair"><span class="dot dot-red"></span> Power Point</span>
+            <span class="skill-pair"><span class="dot dot-peach"></span> Adobe InDesign</span>
+            <span class="skill-pair"><span class="dot dot-peach"></span> CorelDRAW</span>
+            <span class="skill-pair"><span class="dot dot-grey"></span> Tilda</span>
+          </p>
+        </div>
+        <div class="skill-item">
+          <p class="label">Video & Motion:</p>
+          <p class="list">
+            <span class="skill-pair"><span class="dot dot-peach"></span> Adobe Premiere Pro</span>
+            <span class="skill-pair"><span class="dot dot-grey"></span> Adobe After Effects</span>
+            <span class="skill-pair"><span class="dot dot-red"></span> CapCut</span>
+            <span class="skill-pair"><span class="dot dot-peach"></span> Procreate Dreams</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Образование & Языки -->
+      <div class="info-card">
+        <h3 data-en="Education & Languages">Образование & Языки</h3>
+        <div class="edu-item">
+          <p class="school" data-en="Kosygin RSU, Moscow">РГУ им. А.Н. Косыгина г. Москва</p>
+          <p class="details" data-en="Graphic Design • 2021-2023 •<br>Full-time (transferred)">Графический дизайн • 2021-2023 •<br>Очная форма (перевод)</p>
+        </div>
+        <div class="edu-item">
+          <p class="school" data-en="Synergy University, Moscow">Университет Синергия г. Москва</p>
+          <p class="details" data-en="Graphic Design & AR • 2023-2027 •<br>In progress, online (available for full-time)">Графический дизайн и AR • 2023-2027 •<br>Неоконченное высшее, онлайн (готовность к Full-time)</p>
+        </div>
+        <div class="edu-item">
+          <p class="school" data-en="Art School №2, Tomsk">Художественная школа №2 г. Томск</p>
+          <p class="details" data-en="Painting • 2013-2018 •<br>Graduated with honors">Живопись • 2013-2018 •<br>Окончила с отличием</p>
+        </div>
+        <div class="lang-list">
+          <p data-en="<b>Russian:</b> Native"><b>Русский:</b> Родной</p>
+          <p data-en="<b>English:</b> B1 / Reading &amp; work correspondence"><b>Английский:</b> B1 / Чтение и рабочая переписка</p>
+          <p data-en="<b>Korean:</b> B1 / Conversational"><b>Корейский:</b> B1 / Разговорный</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== PORTFOLIO ===== -->
+<section class="section" id="portfolio">
+  <div class="container">
+    <h2 class="section-title" data-en="Portfolio">Портфолио</h2>
+    <div class="filter-buttons" id="filterButtons">
+      <button class="filter-btn active" data-filter="all" data-en="All Work">Все работы</button>
+      <button class="filter-btn" data-filter="ai">AI Generation</button>
+      <button class="filter-btn" data-filter="illustration" data-en="Illustration">Иллюстрации</button>
+      <button class="filter-btn" data-filter="design" data-en="Graphic Design">Граф. Дизайн</button>
+      <button class="filter-btn" data-filter="video" data-en="Video & Motion">Видео & Motion</button>
+    </div>
+    <div class="filter-mobile-nav" id="filterMobileNav">
+      <button class="filter-arrow" id="filterPrevBtn" aria-label="Предыдущая категория">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <span class="filter-mobile-label" id="filterMobileLabel">Все работы</span>
+      <button class="filter-arrow" id="filterNextBtn" aria-label="Следующая категория">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <div class="gallery-collapse-wrap" id="galleryCollapseWrap">
+      <div class="gallery-grid" id="galleryGrid"><!-- сгенерировано JS --></div>
+    </div>
+
+    <button class="load-more-btn" id="loadMoreBtn">
+      <span class="btn-text-wrap"><span class="btn-text" id="btnText">Показать ещё проекты</span></span>
+      <span class="badge" id="moreBadge">+11</span>
+      <span class="arrow">↓</span>
+    </button>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-text">
+        <h2 data-en="Let&#39;s work <span>together.</span>">Давайте работать <span>вместе.</span></h2>
+        <p class="contact-line">
+          <svg class="contact-icon" viewBox="0 0 90 90" fill="currentColor"><path d="M 45 0 C 25.463 0 9.625 15.838 9.625 35.375 c 0 8.722 3.171 16.693 8.404 22.861 L 45 90 l 26.97 -31.765 c 5.233 -6.167 8.404 -14.139 8.404 -22.861 C 80.375 15.838 64.537 0 45 0 z M 45 48.705 c -8.035 0 -14.548 -6.513 -14.548 -14.548 c 0 -8.035 6.513 -14.548 14.548 -14.548 s 14.548 6.513 14.548 14.548 C 59.548 42.192 53.035 48.705 45 48.705 z"/></svg>
+          <span data-en="Kaliningrad / Tomsk — Remote">Калининград / Томск — Удаленно</span>
+        </p>
+        <p class="contact-line">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2C6.477,2,2,6.477,2,12c0,5.523,4.477,10,10,10s10-4.477,10-10C22,6.477,17.523,2,12,2z M14.586,16l-3.293-3.293 C11.105,12.519,11,12.265,11,12V7c0-0.552,0.448-1,1-1h0c0.552,0,1,0.448,1,1v4.586l3,3c0.39,0.39,0.39,1.024,0,1.414l0,0 C15.61,16.39,14.976,16.39,14.586,16z"/></svg>
+          Full-time / Freelance
+        </p>
+      </div>
+      <div class="footer-action">
+        <div class="footer-social">
+          <a href="https://t.me/rinmblw" target="_blank" rel="noopener" aria-label="Telegram" class="icon-scale-up">
+            <svg viewBox="0 0 48 48" fill="currentColor"><path d="M41.4193 7.30899C41.4193 7.30899 45.3046 5.79399 44.9808 9.47328C44.8729 10.9883 43.9016 16.2908 43.1461 22.0262L40.5559 39.0159C40.5559 39.0159 40.3401 41.5048 38.3974 41.9377C36.4547 42.3705 33.5408 40.4227 33.0011 39.9898C32.5694 39.6652 24.9068 34.7955 22.2086 32.4148C21.4531 31.7655 20.5897 30.4669 22.3165 28.9519L33.6487 18.1305C34.9438 16.8319 36.2389 13.8019 30.8426 17.4812L15.7331 27.7616C15.7331 27.7616 14.0063 28.8437 10.7686 27.8698L3.75342 25.7055C3.75342 25.7055 1.16321 24.0823 5.58815 22.459C16.3807 17.3729 29.6555 12.1786 41.4193 7.30899Z"/></svg>
+          </a>
+          <a href="https://max.ru/u/f9LHodD0cOKYWw6nqZ7QCCbTB6oWilsXYKdx-WZf43SFGwpbgeRtLe6-epM" target="_blank" rel="noopener" aria-label="Max">
+            <svg viewBox="0 0 720 720" fill="currentColor"><path d="M350.4,9.6C141.8,20.5,4.1,184.1,12.8,390.4c3.8,90.3,40.1,168,48.7,253.7,2.2,22.2-4.2,49.6,21.4,59.3,31.5,11.9,79.8-8.1,106.2-26.4,9-6.1,17.6-13.2,24.2-22,27.3,18.1,53.2,35.6,85.7,43.4,143.1,34.3,299.9-44.2,369.6-170.3C799.6,291.2,622.5-4.6,350.4,9.6h0ZM269.4,504c-11.3,8.8-22.2,20.8-34.7,27.7-18.1,9.7-23.7-.4-30.5-16.4-21.4-50.9-24-137.6-11.5-190.9,16.8-72.5,72.9-136.3,150-143.1,78-6.9,150.4,32.7,183.1,104.2,72.4,159.1-112.9,316.2-256.4,218.6h0Z"/></svg>
+          </a>
+          <a href="mailto:pollylightt@gmail.com" aria-label="Email" class="icon-scale-up">
+            <svg viewBox="0 0 512 512" fill="currentColor"><path d="M508.65,115.988L363.186,261.451l141.875,141.979c4.295-7.385,6.939-15.85,6.939-24.992V133.563 C512,127.357,510.722,121.476,508.65,115.988z"/><path d="M461.913,83.476H50.087c-8.327,0-16.066,2.236-22.982,5.847L245.76,307.976c6.344,6.344,17.363,6.344,23.596,0 l217.626-217.52C479.58,86.133,471.088,83.476,461.913,83.476z"/><path d="M4.201,113.611C1.527,119.733,0,126.465,0,133.563v244.875c0,8.997,2.573,17.327,6.743,24.632l143.407-143.51 L4.201,113.611z"/><path d="M339.478,285.159l-46.414,46.525c-19.496,19.275-51.084,19.591-70.901,0l-48.306-48.417L32.006,425.017 c5.625,2.192,11.69,3.507,18.081,3.507h411.826c6.235,0,12.146-1.284,17.657-3.376L339.478,285.159z"/></svg>
+          </a>
+        </div>
+        <span class="footer-cta"><span data-en="Contact me">Связаться со мной</span> <svg class="cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M6 11l6-6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Popkova Polina (RIN). All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- ===== POPUP MODAL (переиспользуемый) ===== -->
+<div class="popup-overlay" id="popupOverlay">
+  <button class="popup-nav-arrow popup-nav-prev" id="popupPrevBtn" aria-label="Предыдущий проект">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="popup-modal">
+    <div class="popup-header">
+      <span class="tag" id="popupTag"></span>
+      <h2 id="popupTitle"></h2>
+      <button class="popup-close" id="popupClose">✕</button>
+    </div>
+    <div class="popup-body">
+      <div class="popup-gallery">
+        <div class="popup-main-viewer" id="popupMainViewer">
+          <img id="popupMainImg" src="" alt="">
+          <video id="popupMainVideo" playsinline controls></video>
+          <div class="popup-play-icon" id="popupPlayIcon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="popup-thumbs" id="popupThumbs"></div>
+      </div>
+      <div class="popup-info">
+        <div>
+          <p class="popup-section-title" data-en="Project Brief">Задача проекта</p>
+          <div class="popup-task" id="popupTask"></div>
+        </div>
+        <div>
+          <p class="popup-section-title" data-en="Pipeline & Process">Пайплайн & Процесс</p>
+          <div class="popup-pipeline-list" id="popupPipeline"></div>
+        </div>
+        <div>
+          <p class="popup-section-title" data-en="Tools">Инструменты</p>
+          <div class="popup-tools" id="popupTools"></div>
+        </div>
+        <a href="#" class="popup-result-btn" id="popupResultBtn" target="_blank" data-en="View Result ↗">Посмотреть результат ↗</a>
+      </div>
+    </div>
+  </div>
+  <button class="popup-nav-arrow popup-nav-next" id="popupNextBtn" aria-label="Следующий проект">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</div>
+
+<script src="data.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

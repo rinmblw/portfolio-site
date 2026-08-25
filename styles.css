@@ -1,0 +1,1097 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Убирает синюю заливку/обводку при тапе на мобильных (WebKit/Chrome Android) */
+* { -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; }
+html { -webkit-tap-highlight-color: transparent; }
+
+:root {
+  --orange: #ff5e3a;
+  --orange-tag: #ff5528;
+  --black: #0d0d0d;
+  --grey-card: #18181c;
+  --grey-card2: #1e1e22;
+  --grey-text: #a0a0ab;
+  --white: #ffffff;
+  --white-10: rgba(255,255,255,0.1);
+  --white-5: rgba(255,255,255,0.05);
+  --font-display: 'Dela Gothic One', sans-serif;
+  --font-heading: 'Unbounded', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+/* Dela Gothic One слипается без трекинга — добавляем везде, где используется дисплейный шрифт */
+h1, .section-title, .skills-banner h2, .footer-text h2 {
+  letter-spacing: 2px;
+  font-weight: 400; /* у Dela Gothic One всего один вес — 400. Без этого браузер применяет faux-bold к <h1>/<h2> по умолчанию, и шрифт выглядит жирнее, чем в Figma */
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; border: none; cursor: pointer; background: none; color: inherit; }
+
+/* ===== NAVIGATION (плавающая, фиксированная сверху) ===== */
+.site-nav {
+  position: fixed;
+  top: 24px;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  flex-wrap: wrap;
+  pointer-events: none;
+}
+.nav-left { display: flex; align-items: center; gap: 16px; pointer-events: auto; }
+.nav-lang, .nav-links, .nav-contacts {
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-radius: 150px;
+  pointer-events: auto;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(rgba(24,24,28,0.85), rgba(24,24,28,0.85)) padding-box,
+    linear-gradient(135deg, rgba(255,120,70,0.9), rgba(255,85,40,0.15)) border-box;
+}
+.nav-lang {
+  width: 62px; height: 62px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-body);
+  font-weight: 700; font-size: 18px;
+  color: var(--white);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  height: 62px;
+  min-width: 400px;
+}
+.nav-links a {
+  padding: 15px 20px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.nav-contacts {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 62px;
+  padding: 0 20px;
+}
+.nav-contacts a {
+  width: 25px; height: 25px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white);
+  transition: color 0.2s;
+}
+.nav-contacts a svg { width: 100%; height: 100%; }
+.nav-contacts a.icon-scale-up svg { transform: scale(1.2); }
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.hero-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: 78% 8%; /* ← ЭТУ СТРОКУ МЕНЯТЬ, чтобы двигать фото в hero-баннере (см. пояснение ниже файла) */
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, rgba(13,13,13,0.98) 0%, rgba(13,13,13,0.75) 32%, rgba(13,13,13,0.15) 62%, rgba(13,13,13,0) 78%);
+}
+.hero .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+}
+.hero-inner { max-width: 620px; }
+.alias-tag {
+  display: inline-flex;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  background: rgba(255,94,58,0.2);
+  color: var(--orange);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 9px 14px;
+  border-radius: 20px;
+  margin-bottom: 19px;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: 64px;
+  line-height: 70px;
+  color: var(--white);
+  margin-bottom: 19px;
+}
+.hero h1 span { color: var(--orange); }
+.hero .subtitle {
+  color: var(--grey-text);
+  font-size: 14px;
+  line-height: 22px;
+  text-shadow: 0px 2px 4px rgba(0,0,0,0.8);
+  max-width: 560px;
+}
+
+/* ===== SKILLS BANNER ===== */
+.skills-banner {
+  background: var(--orange);
+  border-radius: 40px;
+  margin: 0;
+  padding: 44px 0 80px;
+}
+.skills-banner h2 {
+  font-family: var(--font-display);
+  font-size: 36px;
+  color: #000;
+  margin-bottom: 30px;
+}
+.skill-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.skill-card {
+  background: var(--black);
+  border-radius: 24px;
+  padding: 30px;
+}
+.skill-card .icon {
+  width: 46px; height: 46px;
+  margin-bottom: 15px;
+  color: var(--orange);
+  display: block;
+}
+.skill-card h3 {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  letter-spacing: 0px;
+  margin-bottom: 10px;
+}
+.skill-card p {
+  font-size: 14px;
+  color: var(--grey-text);
+  line-height: 22px;
+  margin-bottom: 15px;
+}
+.skill-card .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-card .tags span {
+  background: var(--white-10);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+/* ===== SECTIONS ===== */
+.section { padding: 60px 0; }
+.section-title {
+  font-family: var(--font-display);
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+.section-title .accent { color: var(--orange); }
+
+/* ===== EXPERIENCE / SKILLS GRID ===== */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+.info-card {
+  background: var(--grey-card);
+  border: 1px solid var(--white-5);
+  border-radius: 24px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  /* было жёстко 780px — на промежуточных ширинах (всё ещё 3 колонки, но уже
+     теснее) текст переносится на больше строк, и блок отзывов не помещался
+     и обрезался. Теперь высота карточки следует за реальным контентом на
+     любой ширине, а .info-grid{align-items:stretch} выравнивает все 3
+     карточки по самой высокой — визуально даёт тот же ровный ряд, что и раньше. */
+  overflow: hidden;
+}
+.info-card h3 {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  color: var(--orange);
+  letter-spacing: 0px;
+  margin-bottom: 18px;
+}
+.info-card p { font-size: 14px; color: var(--grey-text); line-height: 22px; }
+.info-card p .highlight { color: var(--white); }
+.info-card p.label, .info-card .label {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--white);
+  margin-bottom: 8px;
+  margin-top: 16px;
+}
+.info-card .label:first-of-type { margin-top: 0; }
+.info-card p.rating, .info-card .rating {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--white);
+  margin: 18px 0 12px;
+}
+
+/* levels badges */
+.levels { display: flex; gap: 10px; margin-bottom: 16px; }
+.level-badge {
+  border-radius: 10px;
+  padding: 6px 18px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #000;
+}
+.level-badge.pro { background: var(--orange); }
+.level-badge.high { background: #ffd0b5; }
+.level-badge.mid { background: #8a99a8; }
+.skill-item { margin-bottom: 18px; }
+.skill-item .label { margin-top: 0; margin-bottom: 8px; }
+.skill-item .list { font-size: 14px; line-height: 1.8; }
+.skill-pair { white-space: nowrap; margin-right: 11px; display: inline-block; }
+.dot {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  margin-right: 3px;
+  vertical-align: middle;
+  margin-top: -2px;
+}
+.dot-red { background: var(--orange); }
+.dot-grey { background: #8a99a8; }
+.dot-peach { background: #ffd0b5; }
+
+.edu-item { margin-bottom: 18px; }
+.edu-item .school { font-weight: 700; font-size: 16px; color: var(--white); }
+.edu-item .details { font-size: 14px; color: var(--grey-text); line-height: 22px; }
+.lang-list { border-top: 1px solid var(--orange); padding-top: 14px; margin-top: 14px; }
+.lang-list p { font-size: 14px; margin-bottom: 8px; color: var(--grey-text); }
+.lang-list b { font-weight: 700; color: var(--white); }
+
+/* ===== REVIEWS CAROUSEL ===== */
+.reviews-carousel { position: relative; overflow: hidden; margin-top: auto; padding: 8px 2px 0; height: 250px; flex-shrink: 0; transition: height 0.3s ease; }
+.reviews-track {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+}
+.review-card {
+  background: rgba(255,94,58,0.1);
+  border: 1px dashed var(--orange);
+  border-radius: 16px;
+  padding: 12px 16px;
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  text-align: center;
+  opacity: 0.35;
+  transition: opacity 0.45s ease;
+}
+.review-card.active { opacity: 1; }
+.review-card .who {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+.review-card .avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: linear-gradient(135deg, #666, #333); /* виден, пока фото не загрузилось */
+  flex-shrink: 0;
+  border: 1.4px solid #cbc7c7;
+}
+.review-card .name {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.review-card .who-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.7);
+  min-width: 12px;
+}
+.review-card .smiley {
+  width: 22px; height: 22px;
+  flex-shrink: 0;
+  color: var(--orange);
+}
+.review-card p.quote {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--grey-text);
+  line-height: 22px;
+  margin-bottom: 10px;
+  /* высота больше не фиксирована — подстраивается под реальный текст,
+     а высоту .reviews-carousel держит под активную карточку JS (см. main.js) */
+  max-height: 220px;
+  overflow-y: auto;
+}
+.review-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.review-nav button {
+  color: var(--orange);
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: rgba(255,85,40,0.12);
+  transition: background 0.2s, transform 0.2s;
+  flex-shrink: 0;
+  padding: 0;
+}
+.review-nav button svg { width: 16px; height: 16px; display: block; }
+
+.review-nav a {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--orange);
+  text-decoration: underline;
+  /* раньше nowrap мог не влезать в узкий контейнер и толкал стрелки к самым краям —
+     теперь ссылка может перенестись на 2 строки и гибко ужимается между кнопками */
+  white-space: normal;
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* ===== PORTFOLIO ===== */
+.filter-buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+.filter-btn {
+  color: var(--white);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 22px;
+  border-radius: 100px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--grey-card);
+  border: 1px solid var(--white-5);
+}
+.filter-btn.active { background: var(--orange); border-color: var(--orange); color: #000; }
+
+/* ===== Мобильный селектор категорий (стрелки + название) ===== */
+.filter-mobile-nav { display: none; }
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.gallery-collapse-wrap {
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  padding-top: 16px;
+  margin-top: -16px;
+}
+.gallery-item {
+  position: relative;
+  aspect-ratio: 275/381;
+  border: 1px solid var(--grey-text);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.gallery-item img.bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center center; /* ← ЭТУ СТРОКУ МЕНЯТЬ, чтобы двигать картинку внутри карточек портфолио (влияет на ВСЕ карточки сразу) */
+}
+.gallery-item .overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.87) 56%, #000 78%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px 12px;
+}
+.gallery-item .tag {
+  align-self: flex-start;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  background: var(--orange);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 8px;
+  border-radius: 10px;
+}
+.gallery-item .bottom h4 {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  letter-spacing: 0px;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.gallery-item .bottom p {
+  font-size: 13px;
+  color: var(--grey-text);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+.gallery-item .tools { display: flex; flex-wrap: wrap; gap: 6px; }
+.gallery-item .tools span {
+  background: var(--white-10);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 10px;
+}
+.gallery-item.hidden { display: none; }
+
+.load-more-btn .btn-text {
+  display: inline-block;
+  transition: opacity 0.15s ease;
+}
+.load-more-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--white);
+  padding: 14px 28px;
+  border-radius: 100px;
+  width: 100%;
+  margin-top: 30px;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--grey-card2), var(--grey-card2)) padding-box,
+    linear-gradient(135deg, rgba(255,120,70,0.9), rgba(255,85,40,0.15)) border-box;
+}
+.load-more-btn .badge {
+  background: rgba(255,85,40,0.15);
+  color: var(--orange);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,85,40,0.3);
+  transition: all 0.25s;
+}
+
+.load-more-btn .arrow {
+  background: rgba(255,255,255,0.06);
+  color: var(--orange);
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.25s, background 0.25s, color 0.25s;
+}
+
+.load-more-btn.expanded .arrow { transform: rotate(180deg); }
+.load-more-btn.expanded .badge { display: none; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--grey-card);
+  border-top: 1px solid var(--white-5);
+  padding: 60px 0 20px;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+.footer-text h2 {
+  font-family: var(--font-display);
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+.footer-text h2 span { color: var(--orange); }
+.contact-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--grey-text);
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+.contact-icon {
+  width: 16px; height: 16px;
+  color: var(--orange);
+  flex-shrink: 0;
+}
+.footer-action { text-align: right; }
+.footer-social { display: flex; gap: 20px; justify-content: flex-end; margin-bottom: 20px; }
+.footer-social a {
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--white-10);
+  border-radius: 50%;
+  color: var(--white);
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.footer-social a svg { width: 20px; height: 20px; }
+.footer-social a.icon-scale-up svg { width: 23px; height: 23px; }
+
+.footer-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--white);
+  cursor: default;
+}
+.footer-cta .cta-arrow { width: 18px; height: 18px; color: var(--orange); flex-shrink: 0; }
+.copyright {
+  border-top: 1px solid var(--white-5);
+  padding-top: 19px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--grey-text);
+}
+
+/* ===== POPUP MODAL ===== */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(8,8,10,0.8);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 24px;
+  animation: fadeIn 0.25s ease;
+}
+.popup-overlay.active { display: flex; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.popup-modal {
+  background: var(--grey-card2);
+  border: 1px solid var(--white-5);
+  border-radius: 28px;
+  box-shadow: 0px 24px 60px rgba(0,0,0,0.7), 0px 0px 40px rgba(255,85,40,0.08);
+  max-width: 1160px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 0.25s ease;
+  scrollbar-width: none; /* Firefox */
+}
+.popup-modal::-webkit-scrollbar { width: 0; height: 0; } /* Chrome/Safari/Edge */
+@keyframes slideUp { from { opacity: 0; transform: translateY(16px);} to { opacity: 1; transform: translateY(0);} }
+.popup-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(22,22,24,0.6);
+  border-bottom: 1px solid var(--white-8, rgba(255,255,255,0.08));
+  padding: 24px 32px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.popup-header .tag {
+  background: rgba(255,94,58,0.2);
+  color: var(--orange-tag);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.popup-header h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 20px;
+  flex: 1;
+}
+.popup-close {
+  width: 40px; height: 40px;
+  background: var(--grey-card2);
+  border: 1px solid var(--white-5);
+  border-radius: 20px;
+  color: var(--grey-text);
+  font-size: 16px;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.popup-body {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 32px;
+  padding: 32px;
+}
+.popup-gallery { display: flex; flex-direction: column; gap: 16px; }
+.popup-main-viewer {
+  background: var(--grey-card);
+  border: 1px solid var(--white-5);
+  border-radius: 20px;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  cursor: default;
+}
+.popup-main-viewer.has-video { cursor: pointer; }
+.popup-main-viewer img,
+.popup-main-viewer video {
+  width: 100%; height: 100%;
+  object-fit: contain;
+}
+.popup-main-viewer video { display: none; background: #000; }
+.popup-main-viewer.playing img { display: none; }
+.popup-main-viewer.playing video { display: block; }
+.popup-play-icon {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.popup-main-viewer.show-play-icon .popup-play-icon { display: flex; }
+.popup-play-icon svg {
+  width: 72px; height: 72px;
+  color: var(--white);
+  background: rgba(255,85,40,0.85);
+  border-radius: 50%;
+  padding: 20px;
+  box-sizing: border-box;
+  filter: drop-shadow(0 4px 16px rgba(0,0,0,0.4));
+  transition: transform 0.2s;
+}
+
+.popup-thumbs { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.popup-thumb {
+  width: 100px; height: 70px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.6;
+  position: relative;
+  transition: opacity 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.popup-thumb.active { border-color: var(--orange); opacity: 1; box-shadow: 0 0 16px rgba(255,85,40,0.25); }
+.popup-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.popup-thumb .thumb-play-icon {
+  position: absolute;
+  inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.25);
+}
+.popup-thumb .thumb-play-icon svg {
+  width: 26px; height: 26px;
+  color: var(--white);
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+}
+
+/* ===== СТРЕЛКИ НАВИГАЦИИ МЕЖДУ ПРОЕКТАМИ (снаружи попапа) ===== */
+.popup-nav-arrow {
+  flex-shrink: 0;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  background: rgba(24,24,28,0.85);
+  border: 1px solid rgba(255,85,40,0.4);
+  color: var(--white);
+  transition: all 0.2s;
+}
+.popup-nav-arrow svg { width: 20px; height: 20px; }
+
+.popup-info { display: flex; flex-direction: column; gap: 22px; }
+.popup-section-title {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--orange);
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  margin-bottom: 8px;
+}
+.popup-section-title::before { content: ''; width: 6px; height: 6px; background: var(--orange); border-radius: 50%; flex-shrink: 0; }
+.popup-task {
+  background: var(--grey-card);
+  border: 1px solid var(--white-5);
+  border-radius: 16px;
+  padding: 16px 20px;
+  font-size: 14px;
+  color: var(--grey-text);
+  line-height: 22px;
+}
+.popup-pipeline-list { display: flex; flex-direction: column; gap: 10px; }
+.popup-pipeline-step {
+  background: var(--grey-card);
+  border: 1px solid var(--white-5);
+  border-radius: 14px;
+  padding: 12px 16px;
+  display: flex; gap: 12px;
+}
+.popup-step-num {
+  width: 22px; height: 22px;
+  background: rgba(255,85,40,0.15);
+  border-radius: 6px;
+  color: var(--orange);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 12px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.popup-step-text .step-title { font-weight: 600; font-size: 14px; color: var(--orange); margin-bottom: 2px; }
+.popup-step-text .step-desc { font-size: 12.5px; color: var(--grey-text); line-height: 19px; }
+.popup-tools { display: flex; flex-wrap: wrap; gap: 8px; }
+.popup-tools span {
+  background: rgba(255,94,58,0.2);
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 14px; color: var(--white);
+  padding: 6px 14px;
+  border-radius: 8px;
+}
+.popup-tools span::before { content: ''; width: 6px; height: 6px; background: var(--orange); border-radius: 50%; }
+.popup-result-btn {
+  background: var(--orange);
+  box-shadow: 0px 4px 9px rgba(255,85,40,0.25);
+  border-radius: 12px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.2s;
+}
+
+/* ===== МОБИЛЬНОЕ МЕНЮ (гамбургер + выпадающая панель) ===== */
+.mobile-lang-btn {
+  display: none;
+  position: fixed;
+  top: 24px; left: 20px;
+  z-index: 1001;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  align-items: center; justify-content: center;
+  font-weight: 700; font-size: 15px;
+  color: var(--white);
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  /* Держим кнопку постоянно на своём GPU-слое — без этого мобильный Chrome/Safari
+     иногда "теряет" backdrop-filter после любого DOM-изменения рядом (смена языка
+     обновляет много текста на странице) и не пересчитывает блюр обратно сам. */
+  transform: translateZ(0);
+  will-change: backdrop-filter;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(rgba(24,24,28,0.85), rgba(24,24,28,0.85)) padding-box,
+    linear-gradient(135deg, rgba(255,120,70,0.9), rgba(255,85,40,0.15)) border-box;
+}
+.mobile-menu-btn {
+  display: none;
+  position: fixed;
+  top: 24px; right: 20px;
+  z-index: 1001;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  align-items: center; justify-content: center;
+  color: var(--white);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 1px solid transparent;
+  background:
+    linear-gradient(rgba(24,24,28,0.85), rgba(24,24,28,0.85)) padding-box,
+    linear-gradient(135deg, rgba(255,120,70,0.9), rgba(255,85,40,0.15)) border-box;
+}
+.mobile-menu-btn svg { width: 22px; height: 22px; }
+
+/* Пока открыт поп-ап проекта — плавающие кнопки меню/языка прячем,
+   чтобы они не перекрывали заголовок и крестик закрытия */
+body.popup-open .mobile-menu-btn,
+body.popup-open .mobile-lang-btn {
+  display: none !important;
+}
+
+.mobile-menu-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  background: rgba(8,8,10,0.97);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 0 24px;
+  animation: fadeIn 0.25s ease;
+}
+.mobile-menu-overlay.active { display: flex; }
+.mobile-menu-close {
+  position: absolute;
+  top: 24px; right: 20px;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--grey-card2);
+  border: 1px solid var(--white-5);
+  color: var(--white);
+}
+.mobile-menu-close svg { width: 20px; height: 20px; }
+
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+.mobile-menu-links a {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 26px;
+  color: var(--white);
+  transition: color 0.2s;
+}
+
+.mobile-menu-contacts { display: flex; gap: 28px; }
+.mobile-menu-contacts a { width: 26px; height: 26px; color: var(--white); transition: color 0.2s; }
+.mobile-menu-contacts a svg { width: 100%; height: 100%; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .site-nav { display: none; }
+  .mobile-menu-btn { display: flex; }
+  .mobile-lang-btn { display: flex; }
+}
+@media (max-width: 1024px) {
+  .nav-links { min-width: 0; }
+  .skill-cards, .info-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .popup-body { grid-template-columns: 1fr; }
+  .popup-nav-arrow { display: none; }
+  .hero h1 { font-size: 48px; line-height: 54px; }
+  .footer-inner { flex-direction: column; }
+  .footer-action { text-align: left; }
+  .footer-social { justify-content: flex-start; }
+}
+@media (max-width: 785px) {
+  /* Именно здесь (а не только на самом узком телефоне) "Видео & Motion"
+     переносится на вторую строку в .filter-buttons — переключаем на компактный
+     селектор со стрелками чуть раньше, до появления переноса. */
+  .filter-buttons { display: none; }
+  .filter-mobile-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+  .filter-mobile-label {
+    flex: 1;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--orange);
+    background: var(--grey-card);
+    border: 1px solid var(--white-5);
+    border-radius: 100px;
+    padding: 10px 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .filter-arrow {
+    width: 42px; height: 42px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--grey-card);
+    border: 1px solid var(--white-5);
+    color: var(--orange);
+    transition: all 0.2s;
+  }
+  .filter-arrow svg { width: 18px; height: 18px; }
+  .filter-arrow:active { background: var(--orange); color: #000; }
+}
+@media (max-width: 640px) {
+  .hero { min-height: 480px; margin-top: 0; }
+  .hero h1 { font-size: 36px; line-height: 42px; }
+  .skills-banner { margin: 0; border-radius: 24px; padding: 30px 0 50px; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .section { padding: 40px 0; }
+  .section-title { font-size: 28px; }
+
+  .popup-header { padding: 16px 18px; flex-wrap: wrap; row-gap: 10px; }
+  .popup-header .tag { order: 1; }
+  .popup-close { order: 2; margin-left: auto; }
+  .popup-header h2 {
+    order: 3;
+    flex: 1 1 100%;
+    font-size: 17px;
+    line-height: 1.35;
+    white-space: normal;
+    word-break: break-word;
+  }
+  .popup-body { padding: 20px; gap: 20px; }
+  .mobile-menu-links a { font-size: 22px; }
+
+  /* ===== ГОРИЗОНТАЛЬНЫЕ КАРТОЧКИ ПОРТФОЛИО (узкий телефон, 1 карточка в ряд) ===== */
+  .gallery-item {
+    aspect-ratio: unset;
+    height: 132px;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .gallery-item img.bg {
+    position: static;
+    width: 38%;
+    flex-shrink: 0;
+    height: 100%;
+    /* лёгкий градиент, растворяющий правый край фото в текстовую панель */
+    -webkit-mask-image: linear-gradient(90deg, #000 70%, transparent 100%);
+    mask-image: linear-gradient(90deg, #000 70%, transparent 100%);
+  }
+  .gallery-item .overlay {
+    position: static;
+    flex: 1;
+    min-width: 0;
+    /* тот же приём градиента, что и раньше — только теперь слева направо,
+       чтобы панель плавно "вырастала" из фото, а не резким швом */
+    background: linear-gradient(90deg, rgba(13,13,13,0.55) 0%, rgba(13,13,13,0.95) 20%, var(--black) 45%);
+    flex-direction: column;
+    justify-content: center;
+    padding: 12px 14px;
+    gap: 6px;
+  }
+  .gallery-item .tag { display: none; } /* категория и так видна через мобильный селектор фильтров сверху */
+  .gallery-item .bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .gallery-item .bottom h4 {
+    font-size: 14.5px;
+    margin-bottom: 0;
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+  .gallery-item .bottom p {
+    font-size: 11.5px;
+    line-height: 1.4;
+    margin-bottom: 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+  .gallery-item .tools { gap: 4px; overflow: hidden; max-height: 20px; }
+  .gallery-item .tools span { font-size: 9px; padding: 3px 7px; }
+}
+
+/* ===== HOVER-ЭФФЕКТЫ — ТОЛЬКО ДЛЯ УСТРОЙСТВ С НАСТОЯЩИМ НАВЕДЕНИЕМ =====
+   На тачскринах :hover эмулируется тапом и не снимается браузером, пока не
+   тапнуть в другое место — из-за этого кнопки визуально "залипали" в
+   hover-состоянии после нажатия (например, значок ENG/RUS оставался
+   полупрозрачным, пока не открыть/закрыть меню или поп-ап). Вынесли все
+   :hover-правила сюда, под (hover: hover) — на десктопе с мышью/трекпадом
+   ничего не меняется, а на телефонах и планшетах :hover больше не применяется
+   вообще, поэтому залипать нечему. */
+@media (hover: hover) and (pointer: fine) {
+  .nav-lang:hover { color: var(--orange); }
+  .nav-links a:hover { color: var(--orange); }
+  .nav-contacts a:hover { color: var(--orange); }
+  .review-nav button:hover { background: rgba(255,85,40,0.3); transform: scale(1.08); }
+  .filter-btn:not(.active):hover {
+    border-color: rgba(255,85,40,0.6);
+    color: var(--orange);
+    transform: translateY(-2px);
+  }
+  .gallery-item:hover {
+    transform: translateY(-6px);
+    border-color: var(--orange);
+    box-shadow: 0 6px 14px rgba(255,85,40,0.25);
+  }
+  .load-more-btn:hover {
+    background: #1f1f23;
+    border-color: var(--orange);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255,85,40,0.25);
+  }
+  .load-more-btn:hover .badge { background: var(--orange); color: #fff; }
+  .load-more-btn:hover .arrow { background: var(--orange); color: #fff; }
+  .footer-social a:hover { background: var(--orange); color: #000; transform: translateY(-2px); }
+  .popup-close:hover { background: rgba(255,85,40,0.1); color: var(--orange); border-color: var(--orange); }
+  .popup-main-viewer.has-video:hover .popup-play-icon svg { transform: scale(1.08); }
+  .popup-nav-arrow:hover { color: var(--orange); border-color: var(--orange); transform: scale(1.08); }
+  .popup-result-btn:hover { background: #e84b1f; transform: translateY(-2px); }
+  .mobile-menu-btn:hover { opacity: 0.75; }
+  .mobile-lang-btn:hover { opacity: 0.75; }
+  .mobile-menu-close:hover { color: var(--orange); }
+  .mobile-menu-links a:hover { color: var(--orange); }
+  .mobile-menu-contacts a:hover { color: var(--orange); }
+}
