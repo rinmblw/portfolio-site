@@ -22,7 +22,7 @@ html { -webkit-tap-highlight-color: transparent; }
 html { scroll-behavior: smooth; }
 
 /* Dela Gothic One слипается без трекинга — добавляем везде, где используется дисплейный шрифт */
-h1, .section-title, .skills-banner h2, .footer-text h2 {
+h1, .section-title, .skills-banner h2, .footer-text h2, .hero-stat-num {
   letter-spacing: 2px;
   font-weight: 400; /* у Dela Gothic One всего один вес — 400. Без этого браузер применяет faux-bold к <h1>/<h2> по умолчанию, и шрифт выглядит жирнее, чем в Figma */
 }
@@ -115,6 +115,7 @@ button { font-family: inherit; border: none; cursor: pointer; background: none; 
   display: flex;
   align-items: center;
   overflow: hidden;
+  margin-bottom: -10px;
 }
 .hero-bg {
   position: absolute;
@@ -157,6 +158,7 @@ button { font-family: inherit; border: none; cursor: pointer; background: none; 
   line-height: 70px;
   color: var(--white);
   margin-bottom: 19px;
+  margin-left: 3px;
 }
 .hero h1 span { color: var(--orange); }
 .hero .subtitle {
@@ -165,6 +167,72 @@ button { font-family: inherit; border: none; cursor: pointer; background: none; 
   line-height: 22px;
   text-shadow: 0px 2px 4px rgba(0,0,0,0.8);
   max-width: 560px;
+}
+.hero .tagline {
+  font-family: var(--font-body);
+  font-weight: 700;
+  color: var(--grey-text);
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 32px;
+  margin-left: 3px;
+  white-space: nowrap;
+}
+
+/* ===== HERO STATS ===== */
+/* Двойной background (padding-box + border-box), как у пилюль меню, физически не
+   может дать прозрачный центр — там верхний слой ОБЯЗАН быть непрозрачным, чтобы
+   маскировать градиент только на кайме, иначе нижний (border-box) слой красит всё
+   насквозь, включая середину (это и была причина сплошной заливки). Для честной
+   "только рамка" обводки с прозрачным центром нужна другая техника — ::before
+   с mask-composite: exclude, вырезающий именно кольцо толщиной 1px. Она поддерживает
+   border-radius, в отличие от border-image. */
+.hero-stats {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  border-radius: 40px;
+  padding: 24px 30px 22px;
+  background: transparent;
+}
+.hero-stats::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255,85,40,0.6) 0%, rgba(255,255,255,0.3) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 10px;
+}
+.hero-stat:first-child { padding-right: 12px; }
+.hero-stat:nth-child(2) { min-width: 126px; }
+.hero-stat:nth-child(3) { min-width: 128px; }
+.hero-stat-num {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: 0.4px;
+  color: var(--white);
+  white-space: nowrap;
+}
+.hero-stat-label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--orange);
+  white-space: nowrap;
 }
 
 /* ===== SKILLS BANNER ===== */
@@ -314,6 +382,7 @@ button { font-family: inherit; border: none; cursor: pointer; background: none; 
   gap: 20px;
   transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
+  height: 100%;
 }
 .review-card {
   background: rgba(255,94,58,0.1);
@@ -327,6 +396,8 @@ button { font-family: inherit; border: none; cursor: pointer; background: none; 
   text-align: center;
   opacity: 0.35;
   transition: opacity 0.45s ease;
+  display: flex;
+  flex-direction: column;
 }
 .review-card.active { opacity: 1; }
 .review-card .who {
@@ -379,6 +450,8 @@ button { font-family: inherit; border: none; cursor: pointer; background: none; 
   align-items: center;
   justify-content: center;
   gap: 14px;
+  margin-top: auto;
+  padding-top: 8px;
 }
 .review-nav button {
   color: var(--orange);
@@ -976,7 +1049,22 @@ body.popup-open .mobile-lang-btn {
 }
 @media (max-width: 640px) {
   .hero { min-height: 480px; margin-top: 0; }
-  .hero h1 { font-size: 36px; line-height: 42px; }
+  .hero h1 { font-size: 36px; line-height: 42px; margin-left: 2px; }
+  .hero .tagline { font-size: 15px; line-height: 20px; margin-bottom: 20px; margin-left: 2px; }
+  .hero-stats {
+    /* Плавное сжатие 640px → 320px вместо одного жёсткого скачка — на узких
+       телефонах плашка постепенно уменьшается, а не переполняет экран и не
+       обрезается о правый край. Ниже 320px все значения замирают на минимуме. */
+    gap: clamp(8px, calc(2.19vw + 1px), 15px);
+    padding: clamp(12px, calc(2.81vw + 3px), 21px) clamp(14px, calc(3.13vw + 4px), 24px) clamp(10px, calc(2.5vw + 2px), 18px);
+    border-radius: clamp(16px, calc(2.5vw + 8px), 24px);
+  }
+  .hero-stat { gap: 6px; }
+  .hero-stat:first-child { padding-right: clamp(5px, calc(1.25vw + 1px), 9px); }
+  .hero-stat:nth-child(2) { min-width: 0; }
+  .hero-stat:nth-child(3) { min-width: 0; }
+  .hero-stat-num { font-size: clamp(18px, calc(3.75vw + 6px), 30px); }
+  .hero-stat-label { font-size: clamp(8px, calc(1.56vw + 3px), 13px); }
   .skills-banner { margin: 0; border-radius: 24px; padding: 30px 0 50px; }
   .gallery-grid { grid-template-columns: 1fr; }
   .section { padding: 40px 0; }
@@ -1051,6 +1139,13 @@ body.popup-open .mobile-lang-btn {
   }
   .gallery-item .tools { gap: 4px; overflow: hidden; max-height: 20px; }
   .gallery-item .tools span { font-size: 9px; padding: 3px 7px; }
+}
+
+/* Ниже 405px тэглайну разрешаем перенос — но "AI Artist" и "Графический дизайнер"
+   склеены неразрывным пробелом (&nbsp; в HTML) и переносятся только целиком,
+   так что "дизайнер" никогда не повиснет в одиночку на отдельной строке. */
+@media (max-width: 405px) {
+  .hero .tagline { white-space: normal; }
 }
 
 /* ===== HOVER-ЭФФЕКТЫ — ТОЛЬКО ДЛЯ УСТРОЙСТВ С НАСТОЯЩИМ НАВЕДЕНИЕМ =====

@@ -559,5 +559,36 @@ const PROJECTS = [
       { type: "image", src: "images/imagespopup-cassette-merch-3.webp" }
     ],
     resultUrl: "#"
+  },
+  {
+    id: 20,
+    tag: "#FilmProduction",
+    title: "Художник-постановщик: короткое кино",
+    cardDesc: "Раскадровка, костюмы, декорации и локации для двух независимых короткометражных фильмов",
+    cardTools: ["Storyboard", "Art Direction"],
+    cardImg: "images/imagescard-film-production.webp",
+    categories: ["illustration"],
+    task: "Художник-постановщик на двух независимых короткометражных драматических фильмах (8-12 минут). Отвечала за визуальное решение кадра: раскадровку, подбор костюмов и декораций, согласование локаций и присутствие на площадке для консультаций режиссёра по кадру. Сами фильмы не публикуются по решению съёмочной группы — здесь показаны материалы со съёмочного процесса.",
+    pipeline: [
+      { title: "Раскадровка", desc: "Первичная раскадровка на этапе подготовки к съёмкам." },
+      { title: "Костюмы, декорации, реквизит", desc: "Подбор образов для актёров, согласование декораций и ключевого реквизита, попадающего в кадр." },
+      { title: "Локации & съёмочная площадка", desc: "Совместный с режиссёром выбор локаций, присутствие на большинстве съёмочных дней для консультаций по кадру." }
+    ],
+    title_en: "Production Designer: Short Film",
+    cardDesc_en: "Storyboarding, costumes, set dressing, and locations for two independent short films",
+    task_en: "Production designer on two independent short dramatic films (8-12 min). Responsible for the visual side of the shot: storyboarding, costume and set selection, location scouting, and on-set consultation with the director. The films themselves are not published, per the crew's decision — shown here are behind-the-scenes production materials.",
+    pipeline_en: [
+      { title: "Storyboarding", desc: "Initial storyboard during pre-production." },
+      { title: "Costumes, set dressing, props", desc: "Selecting actor costumes, coordinating set dressing and key props visible in frame." },
+      { title: "Locations & set", desc: "Location scouting together with the director, on set for most shooting days for shot consultation." }
+    ],
+    tools: ["Storyboard", "Art Direction"],
+    media: [
+      { type: "image", src: "images/imagespopup-film-production-1.webp" },
+      { type: "image", src: "images/imagespopup-film-production-2.webp" },
+      { type: "image", src: "images/imagespopup-film-production-3.webp" },
+      { type: "video", poster: "images/imagesposter-film-production-4.webp", src: "videos/videosfilm-production.mp4" }
+    ],
+    resultUrl: "#"
   }
 ];

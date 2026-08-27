@@ -408,20 +408,25 @@ let currentReview = 0;
 
 // На узких/промежуточных ширинах (напр. 1044px — всё ещё 3 колонки, но текст уже
 // переносится на больше строк) фиксированная высота обрезала контент снизу.
-// Поэтому высоту .reviews-carousel всегда меряем по факту под активную карточку,
-// а не только в "компактном" брейкпоинте — так она не обрежется ни на одной ширине.
-// offsetHeight (а не scrollHeight) — чтобы не терять нижнюю рамку карточки (1px border).
+// Высоту .reviews-carousel всегда меряем по САМОЙ ДЛИННОЙ карточке (а не по активной) —
+// так блок не "прыгает" по высоте при переключении между отзывами разной длины,
+// а стрелки/ссылка внутри каждой карточки прижаты к низу через margin-top: auto (см. CSS).
 function updateCarouselHeight() {
   if (!reviewsCarousel) return;
-  const activeCard = reviewCards[currentReview];
-  if (!activeCard) return;
+  // Временно снимаем фиксированную высоту, чтобы измерить естественную высоту
+  // каждой карточки (без растяжения flex-stretch от текущей фиксированной высоты).
+  reviewsCarousel.style.height = 'auto';
+  let maxHeight = 0;
+  reviewCards.forEach(card => {
+    maxHeight = Math.max(maxHeight, card.offsetHeight);
+  });
   // box-sizing: border-box — заданная height включает в себя padding контейнера.
   // .reviews-carousel имеет padding-top 8px, и если не прибавить его сюда,
   // ровно эти 8px "съедаются" из высоты и низ карточки (с рамкой) обрезается.
   const carouselStyles = getComputedStyle(reviewsCarousel);
   const paddingTop = parseFloat(carouselStyles.paddingTop) || 0;
   const paddingBottom = parseFloat(carouselStyles.paddingBottom) || 0;
-  reviewsCarousel.style.height = (activeCard.offsetHeight + paddingTop + paddingBottom) + 'px';
+  reviewsCarousel.style.height = (maxHeight + paddingTop + paddingBottom) + 'px';
 }
 
 function updateCarousel() {
